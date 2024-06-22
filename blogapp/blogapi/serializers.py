@@ -108,6 +108,8 @@ class SinglePostRetreiveWithCommentSerializer(CreateShowSerializer):
         data = super().to_representation(instance)
         comm_obj = Comment.objects.filter(post=instance)
         data['comment'] = CommentShowSerializer(comm_obj, many=True).data
+        like_count = Like.objects.filter(post=instance, liked=True).count()
+        data['like'] = like_count
         return data
 
 

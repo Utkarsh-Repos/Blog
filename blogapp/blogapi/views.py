@@ -149,7 +149,7 @@ class UpdateComment(APIView):
                 else:
                     return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({'message': 'post not exist regarding same id'}, status=status.HTTP_201_CREATED)
+            return Response({'message': 'comment not exist regarding same id'}, status=status.HTTP_201_CREATED)
 
 
 class DeleteComment(APIView):
@@ -199,8 +199,6 @@ class LikePost(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        import pdb
-        pdb.set_trace()
         try:
             post = get_object_or_404(Post, id=pk)
         except Http404:

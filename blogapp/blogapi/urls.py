@@ -21,9 +21,9 @@ urlpatterns = [
     path('create-comment/<int:post_pk>/', CreateComment.as_view(), name='create-comment'),
     path('update-comment/<int:pk>/', UpdateComment.as_view(), name='update-comment'),
     path('delete-comment/<int:pk>/', DeleteComment.as_view(), name='delete-comment'),
-    path('post-list-with-comment/', PostListWithComment.as_view(), name='post-list-with-comment'),
-    path('single-post-retreive/<int:pk>', SinglePostRetreiveWithComment.as_view(),
-         name='single-post-retreive-with-comment'),
+    path('post-list-with-comment-like-count/', PostListWithComment.as_view(), name='post-list-with-comment-like-count'),
+    path('single-post-retrieve-with-comment-like-count/<int:pk>/', SinglePostRetreiveWithComment.as_view(),
+         name='single-post-retrieve-with-comment-like-count'),
     path('like-post/<int:pk>/', LikePost.as_view(), name='like-post'),
 
 
