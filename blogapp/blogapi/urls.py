@@ -1,0 +1,29 @@
+from django.urls import path, include
+from .views import (SignUpView,
+                    LoginView,
+                    CreatePost,
+                    UpdatePost,
+                    DeletePost,
+                    CreateComment,
+                    UpdateComment,
+                    DeleteComment,
+                    PostListWithComment,
+                    SinglePostRetreiveWithComment)
+
+urlpatterns = [
+
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('create-post/', CreatePost.as_view(), name='create-post'),
+    path('update-post/<int:pk>/', UpdatePost.as_view(), name='update-post'),
+    path('delete-post/<int:pk>/', DeletePost.as_view(), name='delete-post'),
+    path('create-comment/<int:post_pk>/', CreateComment.as_view(), name='create-comment'),
+    path('update-comment/<int:pk>/', UpdateComment.as_view(), name='update-comment'),
+    path('delete-comment/<int:pk>/', DeleteComment.as_view(), name='delete-comment'),
+    path('post-list-with-comment/', PostListWithComment.as_view(), name='post-list-with-comment'),
+    path('single-post-retreive/<int:pk>', SinglePostRetreiveWithComment.as_view(),
+         name='single-post-retreive-with-comment'),
+
+
+
+]
