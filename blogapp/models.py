@@ -18,4 +18,16 @@ class Comment(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
 
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    liked = models.BooleanField(default=False, null=False, blank=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
+
+
 

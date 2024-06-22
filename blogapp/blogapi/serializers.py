@@ -2,7 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from blogapp.models import (Post,
-                            Comment)
+                            Comment,
+                            Like)
 
 
 class SignUpSerializer(serializers.Serializer):
@@ -96,6 +97,8 @@ class PostListWithCommentSerializer(CreateShowSerializer):
         data = super().to_representation(instance)
         comm_obj = Comment.objects.filter(post=instance)
         data['comment'] = CommentShowSerializer(comm_obj, many=True).data
+        like_count = Like.objects.filter(post=instance, liked=True).count()
+        data['like'] = like_count
         return data
 
 
@@ -106,5 +109,7 @@ class SinglePostRetreiveWithCommentSerializer(CreateShowSerializer):
         comm_obj = Comment.objects.filter(post=instance)
         data['comment'] = CommentShowSerializer(comm_obj, many=True).data
         return data
+
+
 
 

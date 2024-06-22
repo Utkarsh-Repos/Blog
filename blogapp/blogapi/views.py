@@ -2,7 +2,10 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.pagination import PageNumberPagination
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate
+from django.http import Http404
+
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,7 +21,8 @@ from .serializers import (SignUpSerializer,
                           PostListWithCommentSerializer,
                           SinglePostRetreiveWithCommentSerializer)
 from blogapp.models import (Post,
-                            Comment)
+                            Comment,
+                            Like)
 
 
 class SignUpView(APIView):
@@ -190,7 +194,30 @@ class SinglePostRetreiveWithComment(APIView):
                             status=status.HTTP_204_NO_CONTENT)
 
 
+class LikePost(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def post(self, request, pk):
+        import pdb
+        pdb.set_trace()
+        try:
+            post = get_object_or_404(Post, id=pk)
+        except Http404:
+            return Response({'message': 'No data found with corresponding post ID'}, status=status.HTTP_404_NOT_FOUND)
 
-
-
+        like_queryset = post.like_set.all().filter(user=request.user)
+        if like_queryset.exists():
+            like_obj = like_queryset.first()
+            if like_obj.liked:
+                like_obj.delete()
+            else:
+                like_obj.liked = True
+                like_obj.save()
+        else:
+            like = Like()
+            like.user = request.user
+            like.post = post
+            like.liked = True
+            like.save()
+        return Response({'message': 'Like status updated'}, status=status.HTTP_200_OK)

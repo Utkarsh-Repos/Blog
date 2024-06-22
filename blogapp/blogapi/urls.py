@@ -8,7 +8,8 @@ from .views import (SignUpView,
                     UpdateComment,
                     DeleteComment,
                     PostListWithComment,
-                    SinglePostRetreiveWithComment)
+                    SinglePostRetreiveWithComment,
+                    LikePost)
 
 urlpatterns = [
 
@@ -23,6 +24,8 @@ urlpatterns = [
     path('post-list-with-comment/', PostListWithComment.as_view(), name='post-list-with-comment'),
     path('single-post-retreive/<int:pk>', SinglePostRetreiveWithComment.as_view(),
          name='single-post-retreive-with-comment'),
+    path('like-post/<int:pk>/', LikePost.as_view(), name='like-post'),
+
 
 
 
