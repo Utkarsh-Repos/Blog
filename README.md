@@ -122,8 +122,7 @@ curl --location --request GET 'http://127.0.0.1:8000/blogapi/post-list-with-comm
 
 ## POST RETREIVE API ##
 ```commandline
-curl --location --request GET 'http://127.0.0.1:8000/blogapi/single-post-retrieve-with-comment-like-count/1/' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MDA5NDM3LCJpYXQiOjE3MTkwMDU4MzcsImp0aSI6ImMyZjQwMGYxNmViOTQ3NjRiNWVmZjFmZmYzZGY0YzNlIiwidXNlcl9pZCI6N30.5iyjuqCFQvLoqTNbexelE_QXSfFdajt3gR4fqG3Oyf0'
+curl --location --request GET 'http://127.0.0.1:8000/blogapi/single-post-retrieve-with-comment-like-count/1/'
 ```
 
 ## LIKE POST API ##
